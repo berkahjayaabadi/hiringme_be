@@ -32,6 +32,6 @@ app.get("*", (req, res) => {
     message: "not found",
   });
 });
-app.listen(PORT, () => {
-  console.log(`backend succesly running on port ${PORT}`);
+app.listen(6144, () => {
+  console.log(`backend succesly running on port 6144`);
 });
