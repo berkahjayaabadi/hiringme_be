@@ -6,6 +6,8 @@ const app = express();
 const cors = require("cors");
 const router = require("./src/routes/index");
 
+const {PORT} = process.env.PORT || 5000;
+
 //defaultnya express js itu ga menerima semua jenis form.
 // use() middleware urlencoded, json
 app.use(cors());
@@ -30,6 +32,6 @@ app.get("*", (req, res) => {
     message: "not found",
   });
 });
-app.listen(5000, () => {
-  console.log("backend succesly running on port 5000");
+app.listen(PORT, () => {
+  console.log(`backend succesly running on port ${PORT}`);
 });
