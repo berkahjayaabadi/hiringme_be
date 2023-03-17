@@ -45,7 +45,7 @@ const userController = {
         if (typeof result.oldImages != "undefined") {
           for (let index = 0; index < result.oldImages.length; index++) {
             unlink(
-              src/public/uploads/images/${result.oldImages[index].filename}
+              `src/public/uploads/images/${result.oldImages[index].filename}`
             );
           }
         }
