@@ -73,34 +73,31 @@ const userModel = {
     fullname,
     email,
     phone,
-    password,
     jobType,
     address,
-    image,
+    file,
     instagram,
     github,
     gitlab,
     bio,
   }) => {
     return new Promise((resolve, reject) => {
-      db.query(`SELECT * FROM users_worker WHERE id='${id}'`, (err, result) => {
+      db.query(SELECT * FROM users_worker WHERE id='${id}', (err, result) => {
         if (err) {
           return reject(err.message);
         } else {
           db.query(
-            `UPDATE users_worker SET name='${
+            UPDATE users_worker SET name='${
               fullname || result.rows[0].fullname
             }', email ='${email || result.rows[0].email}', phone ='${
               phone || result.rows[0].phone
-            }', password ='${
-              password || result.rows[0].password
-            }', job_type ='${jobType || result.rows[0].jobType}', address ='${
+            }',  job_type ='${jobType || result.rows[0].jobType}', address ='${
               address || result.rows[0].address
-            }',  image ='${image || result.rows[0].image}', instagram ='${
+            }',  image ='${file ? file.path : result.rows[0].image}', instagram ='${
               instagram || result.rows[0].instagram
             }', github ='${github || result.rows[0].github}', gitlab ='${
               gitlab || result.rows[0].gitlab
-            }', bio ='${bio || result.rows[0].bio}' WHERE id='${id}'`,
+            }', bio ='${bio || result.rows[0].bio}' WHERE id='${id}',
             (err, result) => {
               if (err) {
                 return reject(err.message);
@@ -110,10 +107,9 @@ const userModel = {
                   fullname,
                   email,
                   phone,
-                  password,
                   jobType,
                   address,
-                  image,
+                  image :file,
                   instagram,
                   github,
                   gitlab,
