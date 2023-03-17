@@ -82,7 +82,7 @@ const userModel = {
     bio,
   }) => {
     return new Promise((resolve, reject) => {
-      db.query(SELECT * FROM users_worker WHERE id='${id}', (err, result) => {
+      db.query(`SELECT * FROM users_worker WHERE id='${id}'`, (err, result) => {
         if (err) {
           return reject(err.message);
         } else {
