@@ -32,7 +32,7 @@ const skillModel = {
 
   remove: (id) => {
     return new Promise((resolve, reject) => {
-      db.query(`DELETE from users_worker WHERE id='${id}'`, (err, result) => {
+      db.query(`DELETE from skill WHERE id='${id}'`, (err, result) => {
         if (err) {
           return reject(err.message);
         } else {
