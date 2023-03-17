@@ -87,7 +87,7 @@ const userModel = {
           return reject(err.message);
         } else {
           db.query(
-            UPDATE users_worker SET name='${
+            `UPDATE users_worker SET name='${
               fullname || result.rows[0].fullname
             }', email ='${email || result.rows[0].email}', phone ='${
               phone || result.rows[0].phone
@@ -97,7 +97,7 @@ const userModel = {
               instagram || result.rows[0].instagram
             }', github ='${github || result.rows[0].github}', gitlab ='${
               gitlab || result.rows[0].gitlab
-            }', bio ='${bio || result.rows[0].bio}' WHERE id='${id}',
+            }', bio ='${bio || result.rows[0].bio}' WHERE id='${id}'`,
             (err, result) => {
               if (err) {
                 return reject(err.message);
