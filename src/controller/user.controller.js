@@ -34,34 +34,26 @@ const userController = {
       });
   },
   update: (req, res) => {
-    bcrypt.hash(req.body.password, 10, (err, hash) => {
-      //store hash in your password DB
-      if (err) {
-        return res.status(500).send({ message: err.message });
-      } else {
-        const request = {
-          ...req.body,
-          id: req.params.id,
-          image: req.file.filename,
-          password: hash,
-        };
-        return userModel
-          .update(request)
-          .then((result) => {
-            if (typeof result.oldImages != "undefined") {
-              for (let index = 0; index < result.oldImages.length; index++) {
-                unlink(
-                  `src/public/uploads/images/${result.oldImages[index].filename}`
-                );
-              }
-            }
-            return res.status(201).send({ message: "success", data: result });
-          })
-          .catch((error) => {
-            return res.status(500).send({ message: error });
-          });
-      }
-    });
+    const request = {
+      ...req.body,
+      id: req.params.id,
+      image: req.file.filename,
+    };
+    return userModel
+      .update(request)
+      .then((result) => {
+        if (typeof result.oldImages != "undefined") {
+          for (let index = 0; index < result.oldImages.length; index++) {
+            unlink(
+              src/public/uploads/images/${result.oldImages[index].filename}
+            );
+          }
+        }
+        return res.status(201).send({ message: "success", data: result });
+      })
+      .catch((error) => {
+        return res.status(500).send({ message: error });
+      });
   },
   remove: (req, res) => {
     return userModel
