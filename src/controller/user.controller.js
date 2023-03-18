@@ -55,6 +55,7 @@ const userController = {
         return res.status(500).send({ message: error });
       });
   },
+  
   remove: (req, res) => {
     return userModel
       .remove(req.params.id)
