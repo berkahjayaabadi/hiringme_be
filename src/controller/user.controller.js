@@ -37,7 +37,7 @@ const userController = {
     const request = {
       ...req.body,
       id: req.params.id,
-      image: req.file.filename,
+      image: req.filename,
     };
     return userModel
       .update(request)
